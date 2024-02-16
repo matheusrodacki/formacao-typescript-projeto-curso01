@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "noEmitOnError": true,
+    "noImplicitAny": true,
+    "removeComments": true,
+    "experimentalDecorators": true
+  }
+}
