@@ -1,0 +1,42 @@
+{
+  "name": "formacao-typescript-projeto-curso01",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack serve --mode development --config webpack.config.js ",
+    "start-prod": "webpack serve --mode production --config webpack.config.js ",
+    "build-dev": "webpack --mode development --config webpack.config.js",
+    "build-prod": "webpack --mode production --config webpack.config.js",
+    "compile": "tsc",
+    "watch": "tsc -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matheusrodacki/formacao-typescript-projeto-curso01.git"
+  },
+  "author": "matheusrodacki",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/matheusrodacki/formacao-typescript-projeto-curso01/issues"
+  },
+  "homepage": "https://github.com/matheusrodacki/formacao-typescript-projeto-curso01#readme",
+  "devDependencies": {
+    "copy-webpack-plugin": "^12.0.2",
+    "css-loader": "^6.10.0",
+    "css-minimizer-webpack-plugin": "^6.0.0",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.6.0",
+    "mini-css-extract-plugin": "^2.8.0",
+    "style-loader": "^3.3.4",
+    "ts-loader": "^9.5.1",
+    "url-loader": "^4.1.1",
+    "webpack": "^5.90.1",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.0.1"
+  },
+  "dependencies": {
+    "typescript": "^5.3.3"
+  }
+}
