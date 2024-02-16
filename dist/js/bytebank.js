@@ -1,19 +1,19 @@
-var saldoAtual = 3000;
-var elementoSaldo = document.querySelector('.saldo-valor .valor');
+let saldoAtual = 3000;
+const elementoSaldo = document.querySelector('.saldo-valor .valor');
 elementoSaldo.textContent = saldoAtual.toString();
-var elementoFormulario = document.querySelector('.block-nova-transacao form');
-elementoFormulario.addEventListener('submit', function (event) {
+const elementoFormulario = document.querySelector('.block-nova-transacao form');
+elementoFormulario.addEventListener('submit', (event) => {
     event.preventDefault();
     if (!elementoFormulario.checkValidity()) {
         alert('Por favor, preencha todos dos campos da transação');
     }
-    var inputTipoTransacao = elementoFormulario.querySelector('#tipoTransacao');
-    var inputValor = elementoFormulario.querySelector('#valor');
-    var inputData = elementoFormulario.querySelector('#data');
-    var tipoTransacao = inputTipoTransacao.value;
-    var valor = inputValor.valueAsNumber;
-    var exp = /-/g;
-    var data = new Date(inputData.value.replace(exp, ','));
+    const inputTipoTransacao = elementoFormulario.querySelector('#tipoTransacao');
+    const inputValor = elementoFormulario.querySelector('#valor');
+    const inputData = elementoFormulario.querySelector('#data');
+    let tipoTransacao = inputTipoTransacao.value;
+    let valor = inputValor.valueAsNumber;
+    const exp = /-/g;
+    let data = new Date(inputData.value.replace(exp, ','));
     if (tipoTransacao === 'Depósito') {
         saldoAtual += valor;
     }
@@ -24,10 +24,10 @@ elementoFormulario.addEventListener('submit', function (event) {
         throw new Error('Tipo de transação inválida');
     }
     elementoSaldo.textContent = saldoAtual.toString();
-    var novaTransacao = {
-        tipoTransacao: tipoTransacao,
-        valor: valor,
-        data: data,
+    const novaTransacao = {
+        tipoTransacao,
+        valor,
+        data,
     };
     console.log(novaTransacao);
     elementoFormulario.reset();
