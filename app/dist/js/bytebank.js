@@ -1,2 +1,35 @@
-/*! For license information please see bytebank.js.LICENSE.txt */
-(()=>{"use strict";var __webpack_modules__={"./app/src/js/bytebank.ts":(__unused_webpack_module,__webpack_exports__,__webpack_require__)=>{eval("// ESM COMPAT FLAG\n__webpack_require__.r(__webpack_exports__);\n\n;// CONCATENATED MODULE: ./app/src/css/app.css\n// extracted by mini-css-extract-plugin\n\n;// CONCATENATED MODULE: ./app/src/js/bytebank.ts\n\nlet saldo = 3000;\nconst elementoSaldo = document.querySelector('.saldo-valor .valor');\nelementoSaldo.textContent = saldo.toString();\nconst elementoFormulario = document.querySelector('.block-nova-transacao form');\nelementoFormulario.addEventListener('submit', (event) => {\n    event.preventDefault();\n    if (!elementoFormulario.checkValidity()) {\n        alert('Por favor, preencha todos dos campos da transação');\n    }\n    const inputTipoTransacao = elementoFormulario.querySelector('#tipoTransacao');\n    const inputValor = elementoFormulario.querySelector('#valor');\n    const inputData = elementoFormulario.querySelector('#data');\n    let tipoTransacao = inputTipoTransacao.value;\n    let valor = inputValor.valueAsNumber;\n    const exp = /-/g;\n    let data = new Date(inputData.value.replace(exp, ','));\n    if (tipoTransacao === 'Depósito') {\n        saldo += valor;\n    }\n    else if (tipoTransacao === 'Transferência' || tipoTransacao === 'Pagamento de Boleto') {\n        saldo -= valor;\n    }\n    else {\n        throw new Error('Tipo de transação inválida');\n    }\n    elementoSaldo.textContent = saldo.toString();\n    const novaTransacao = {\n        tipoTransacao,\n        valor,\n        data,\n    };\n    console.log(novaTransacao);\n    elementoFormulario.reset();\n});\n\n\n//# sourceURL=webpack://formacao-typescript-projeto-curso01/./app/src/js/bytebank.ts_+_1_modules?")}},__webpack_require__={r:e=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})}},__webpack_exports__={};__webpack_modules__["./app/src/js/bytebank.ts"](0,__webpack_exports__,__webpack_require__)})();
+import '../css/app.css';
+let saldo = 3000;
+const elementoSaldo = document.querySelector('.saldo-valor .valor');
+elementoSaldo.textContent = saldo.toString();
+const elementoFormulario = document.querySelector('.block-nova-transacao form');
+elementoFormulario.addEventListener('submit', (event) => {
+    event.preventDefault();
+    if (!elementoFormulario.checkValidity()) {
+        alert('Por favor, preencha todos dos campos da transação');
+    }
+    const inputTipoTransacao = elementoFormulario.querySelector('#tipoTransacao');
+    const inputValor = elementoFormulario.querySelector('#valor');
+    const inputData = elementoFormulario.querySelector('#data');
+    let tipoTransacao = inputTipoTransacao.value;
+    let valor = inputValor.valueAsNumber;
+    const exp = /-/g;
+    let data = new Date(inputData.value.replace(exp, ','));
+    if (tipoTransacao === 'Depósito') {
+        saldo += valor;
+    }
+    else if (tipoTransacao === 'Transferência' || tipoTransacao === 'Pagamento de Boleto') {
+        saldo -= valor;
+    }
+    else {
+        throw new Error('Tipo de transação inválida');
+    }
+    elementoSaldo.textContent = saldo.toString();
+    const novaTransacao = {
+        tipoTransacao,
+        valor,
+        data,
+    };
+    console.log(novaTransacao);
+    elementoFormulario.reset();
+});
