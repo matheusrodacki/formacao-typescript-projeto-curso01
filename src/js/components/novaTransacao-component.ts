@@ -1,10 +1,3 @@
-import '../css/app.css';
-let saldo: number = 3000;
-
-const elementoSaldo = document.querySelector('.saldo-valor .valor') as HTMLElement;
-
-elementoSaldo.textContent = saldo.toString();
-
 const elementoFormulario = document.querySelector('.block-nova-transacao form') as HTMLFormElement;
 
 elementoFormulario.addEventListener('submit', (event) => {
