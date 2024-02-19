@@ -22,7 +22,7 @@
 
     &:where(select) {
       appearance: none;
-      background-image: url('../images/arrow_drop_down.png');
+      background-image: url('../../images/arrow_drop_down.png');
       background-repeat: no-repeat;
       background-position: top 50% right 16px;
     }
