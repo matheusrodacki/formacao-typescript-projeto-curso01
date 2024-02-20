@@ -1,7 +1,14 @@
 import { TipoTransacao } from './TipoTransacao.js';
 import { Transacao } from './Transacao.js';
 
-let saldo: number = 3000;
+let saldo: number = JSON.parse(localStorage.getItem('saldo')) || 0;
+const transacoes: Transacao[] =
+  JSON.parse(localStorage.getItem('transacoes'), (key: string, value: string) => {
+    if (key === 'data') {
+      return new Date(value);
+    }
+    return value;
+  }) || [];
 
 function debitar(valor: number): void {
   if (valor <= 0) {
@@ -9,14 +16,16 @@ function debitar(valor: number): void {
   } else if (valor > saldo) {
     throw new Error('Saldo insuficiente!');
   }
-  saldo += valor;
+  saldo -= valor;
+  localStorage.setItem('saldo', saldo.toString());
 }
 
 function depositar(valor: number): void {
   if (valor <= 0) {
     throw new Error('Saldo insuficiente!');
   }
-  saldo -= valor;
+  saldo += valor;
+  localStorage.setItem('saldo', saldo.toString());
 }
 
 const Conta = {
@@ -38,6 +47,9 @@ const Conta = {
     } else {
       throw new Error('Tipo de transação é inválida');
     }
+
+    transacoes.push(novaTransacao);
+    localStorage.setItem('transacoes', JSON.stringify(transacoes));
   },
 };
 
