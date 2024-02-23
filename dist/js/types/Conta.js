@@ -10,7 +10,7 @@ function debitar(valor) {
     if (valor <= 0) {
         throw new Error('O valor a ser debitado deve ser maior que zero!');
     }
-    else if (valor > saldo) {
+    if (valor > saldo) {
         throw new Error('Saldo insuficiente!');
     }
     saldo -= valor;
@@ -18,7 +18,7 @@ function debitar(valor) {
 }
 function depositar(valor) {
     if (valor <= 0) {
-        throw new Error('Saldo insuficiente!');
+        throw new Error('O valor a ser depositado deve ser maior que zero!');
     }
     saldo += valor;
     localStorage.setItem('saldo', saldo.toString());
@@ -36,11 +36,8 @@ const Conta = {
         const transacoesOrdenadas = listaTransacoes.sort((t1, t2) => t2.data.getTime() - t1.data.getTime());
         let labelAtualGrupoTransacao = '';
         for (let transacao of transacoesOrdenadas) {
-            let labelGrupoTransacao = transacao.data.toLocaleDateString('pt-br', {
-                month: 'long',
-                year: 'numeric',
-            });
-            if (labelAtualGrupoTransacao != labelGrupoTransacao) {
+            let labelGrupoTransacao = transacao.data.toLocaleDateString('pt-br', { month: 'long', year: 'numeric' });
+            if (labelAtualGrupoTransacao !== labelGrupoTransacao) {
                 labelAtualGrupoTransacao = labelGrupoTransacao;
                 gruposTransacoes.push({
                     label: labelGrupoTransacao,
@@ -52,16 +49,16 @@ const Conta = {
         return gruposTransacoes;
     },
     registrarTransacao(novaTransacao) {
-        if (novaTransacao.tipoTransacao === TipoTransacao.DEPOSITO) {
+        if (novaTransacao.tipoTransacao == TipoTransacao.DEPOSITO) {
             depositar(novaTransacao.valor);
         }
-        else if (novaTransacao.tipoTransacao === TipoTransacao.TRANSFERENCIA ||
-            novaTransacao.tipoTransacao === TipoTransacao.PAGAMENTO_BOLETO) {
+        else if (novaTransacao.tipoTransacao == TipoTransacao.TRANSFERENCIA ||
+            novaTransacao.tipoTransacao == TipoTransacao.PAGAMENTO_BOLETO) {
             debitar(novaTransacao.valor);
             novaTransacao.valor *= -1;
         }
         else {
-            throw new Error('Tipo de transação é inválida');
+            throw new Error('Tipo de Transação é inválido!');
         }
         transacoes.push(novaTransacao);
         console.log(this.getGruposTransacoes());

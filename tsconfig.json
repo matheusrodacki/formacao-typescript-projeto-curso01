@@ -1,11 +1,10 @@
 {
-  "compilerOptions": {
-    "outDir": "dist/js",
-    "target": "ES2022",
-    "noEmitOnError": true,
-    "noImplicitAny": true,
-    "removeComments": true,
-    "experimentalDecorators": true
-  },
-  "include": ["src/**/*"]
+    "compilerOptions": {
+        "target": "ES2022",
+        "outDir": "./dist/js/",
+        "noEmitOnError": true
+    },
+    "include": [
+        "./src/**/*"
+    ]
 }
